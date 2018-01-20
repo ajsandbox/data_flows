@@ -19,6 +19,34 @@ ws <- gs_read(ss,ws="Sheet1")
 head(ws)
 
 
+print("Accessing Google Sheet")
+library(googlesheets)
+if(file.exists("<path_to_rds_file>/Googlefiles.rds")) {
+  print("Using existing token...")
+  token<-gs_auth(token="<path_to_rds_file>/Googlefiles.rds")
+} else{
+  print("Generating missing token...")
+  token<-gs_auth()
+  gd_token()
+  saveRDS(token, file="<path_to_rds_file>/Googlefiles.rds")}
+s1<-gs_url("<link_to_googlesheet>/edit#gid=0", verbose = TRUE)
+x5=gs_read(s1,ws="<worksheet>",range="B1:G8000",col_names=TRUE)
+l<-data.frame(x5)
+l$date<-as.character(l$date)
+l[is.na(l)]<-0
+## code to clear data in googlesheet 
+for (i in seq(from=1,to=nrow(l),by=1))                      
+{
+  for(j in seq(from=1,to=ncol(l),by=1))
+  {
+    l[i,j]<-""
+    
+  }
+}
+gs_edit_cells(s1, ws = "<worksheet>", input = l, anchor = "B2", byrow = FALSE,
+              col_names = FALSE, verbose = TRUE)
+gs_edit_cells(s1, ws = "<worksheet>", input = <dbquery_result>, anchor = "B2", byrow = FALSE,
+              col_names = FALSE, verbose = TRUE)
 
 # Send email using an SMTP server
 library(mailR)
@@ -61,6 +89,21 @@ r <- POST("<api_endpoint>",
           body = list("link"=paste0("<link_to_file>",file_name)),encode="json")
 
 
+
+# Send a message to slack 
+# https://github.com/hrbrmstr/slackr
+
+
+# list of libraries
+library(RPostgreSQL, warn.conflicts = FALSE, quietly=TRUE)
+library(ggplot2, warn.conflicts = FALSE, quietly=TRUE)
+library(scales, warn.conflicts = FALSE, quietly=TRUE)
+library(ggrepel, warn.conflicts = FALSE, quietly=TRUE)
+library(dplyr, warn.conflicts = FALSE, quietly=TRUE)
+library(doBy, warn.conflicts = FALSE, quietly=TRUE)
+library(xtable, warn.conflicts = FALSE, quietly=TRUE)
+library(mailR, warn.conflicts = FALSE, quietly=TRUE)
+library (syuzhet, warn.conflicts = FALSE, quietly=TRUE)
 
 
 
