@@ -11,4 +11,11 @@
 	* Send messages to slack 
 
 
-## References 
+## Data visualization 
+
+* http://rstudio.github.io/shinydashboard/get_started.html
+* https://plot.ly/free-sql-client-download/
+* Google sheets 
+* PowerBI 
+
+Install R, RStudio, Anaconda Python 
