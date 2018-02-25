@@ -9,6 +9,10 @@
 	* Uploading to AWS S3 
 	* Uploading a file to an external API
 	* Send messages to slack 
+* PHP Snippets 
+	* Fetching APIs (Mandi prices)
+	* Sending slack notifications 
+	* Using google sheets as a backend 
 
 
 ## Data visualization 
