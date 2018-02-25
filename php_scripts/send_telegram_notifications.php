@@ -12,6 +12,7 @@ Can later extend this to following :-
 3) Take payments
 
 Note to self : Instead of doing to scratch, it would probably be better to use an SDK. 
+Other notes : https://telegram-bot-sdk.readme.io/reference#getme
 
 */
 
